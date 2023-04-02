@@ -1,4 +1,3 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -53,7 +52,7 @@ export class LoginComponent implements OnInit {
       this.toastr.success('Login Successful');
     }, error => {
       this.isError = true;
-      throwError(() => new error());
+      throwError(error);
     });
   }
 }

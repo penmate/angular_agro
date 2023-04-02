@@ -1,4 +1,4 @@
-export interface CreateProductPayload {
-    productName: string;
-    description: string;
+export class CreateProductPayload {
+    name?: string;
+    description?: string;
 }

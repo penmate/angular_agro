@@ -6,12 +6,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
 import { CreateProductComponent } from './product/create-product/create-product.component';
+import { ProductTileComponent } from './shared/product-tile/product-tile.component';
+import { SideBarComponent } from './shared/side-bar/side-bar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { TokenInterceptor } from './token-interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,9 @@ import { CreateProductComponent } from './product/create-product/create-product.
     SignupComponent,
     LoginComponent,
     HomeComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    ProductTileComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +36,17 @@ import { CreateProductComponent } from './product/create-product/create-product.
     HttpClientModule,
     NgxWebstorageModule.forRoot(),
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FontAwesomeModule,
+    EditorModule
   ],
-  providers: [],
+  providers: [
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

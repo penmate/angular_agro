@@ -1,1 +1,24 @@
-<p>create-product works!</p>
+<div class="container">
+    <div class="row">
+      <hr />
+      <div class="create-product-container col-md-9">
+        <form class="product-form" [formGroup]="createProductForm" (ngSubmit)="createProduct()">
+          <div class="form-group">
+            <div class="create-post-heading">Create Product Post</div>
+            <hr />
+            <input type="text" [formControlName]="'name'" class="form-control" style="margin-top: 5px"
+              placeholder="Title">
+  
+              <textarea type="text" [formControlName]="'description'" style="width: 100%; margin-top: 5px"
+              placeholder="Description"></textarea>
+            <span>
+              <div style="margin-top: 5px" class="float-right">
+                <button (click)="discardProduct()" class="btnDiscard">Discard</button>
+                <button (click)="createProduct()" class="btnCreatePost">Post</button>
+              </div>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -16,6 +16,7 @@ export class ProductService {
   }
 
   createProduct(productPayload: CreateProductPayload): Observable<any> {
+    console.log(productPayload);
     return this.http.post('http://localhost:8080/api/products/', productPayload);
   }
 
