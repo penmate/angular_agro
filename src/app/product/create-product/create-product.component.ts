@@ -31,9 +31,11 @@ export class CreateProductComponent implements OnInit {
 
   createProduct() {
     this.productPayload.name = this.createProductForm.get('name')?.value;
-    this.productPayload.name = this.createProductForm.get('description')?.value;
+    this.productPayload.description = this.createProductForm.get('description')?.value;
 
     this.productService.createProduct(this.productPayload).subscribe((data) => {
+      console.log("Log from CreateProductComponent");
+      console.log(data);
       this.router.navigateByUrl('/');
     }, error => {
       throwError(error);

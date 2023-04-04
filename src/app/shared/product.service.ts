@@ -12,11 +12,12 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getAllProducts(): Observable<Array<ProductModel>> {
+    console.log("Log from getAllProducts productService" + (new Error()).stack)
     return this.http.get<Array<ProductModel>>('http://localhost:8080/api/products/');
   }
 
   createProduct(productPayload: CreateProductPayload): Observable<any> {
-    console.log(productPayload);
+    console.log("Log from createProduct productService" + (new Error()).stack)
     return this.http.post('http://localhost:8080/api/products/', productPayload);
   }
 
@@ -25,6 +26,6 @@ export class ProductService {
   }
 
   getAllProductsByUser(name: string): Observable<ProductModel[]> {
-    return this.http.get<ProductModel[]>('http://localhost:8080/api/products/by-user/' + name);
+    return this.http.get<ProductModel[]>('http://localhost:8080/api/products/by_user/' + name);
   }
 }

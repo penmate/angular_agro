@@ -11,7 +11,7 @@
         <a class="productname">{{product.productName}}</a>
       </div>
       <div>
-        <p class="product-text">{{product.description}}</p>
+        <p [innerHtml]="product.description" class="product-text"></p>
       </div>
       <hr />
       <span>
@@ -19,8 +19,8 @@
           <fa-icon [icon]="faComments"></fa-icon>
           Comments({{product.commentCount}})
         </a>
-        <button class="login">
-          Read product
+        <button class="login" (click)="goToProduct(product.id)">
+          Show Product
         </button>
       </span>
     </div>

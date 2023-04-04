@@ -82,4 +82,10 @@ export class AuthService {
       return this.getJwtToken() != null;
     }
 
+    isTokenExpired(token: string) {
+      const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+      // console.log((Math.floor((new Date).getTime() / 1000).toString() + " >= " + expiry.toString()));
+      return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+    }
+    
 }

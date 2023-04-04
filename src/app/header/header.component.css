@@ -1,16 +1,16 @@
 header{
     border-radius: 1px solid;
 }
-.img{
-    height: 50px;
-    padding: 8px;
-    width: 50px;
+.agro-icon-svg{
+    height: 70px;
+    padding: 8px 8px 8px 0;
+    width: 70px;
 }
 
 .agro-text{        
     font-weight: 700;
-    height: 50px;
-    width: 50px;    
+    height: 70px;
+    width: 70px;    
 }
 .logo{
     text-decoration: none;
@@ -92,6 +92,11 @@ header{
     border-radius: 4px;
     float: left;
     margin-right: 5px;
-    max-height: 24px;
-    max-width: 24px;
+    max-height: 44px;
+    max-width: 44px;
+}
+
+.account-text{
+    height: 44px;
+    width: 44px;
 }

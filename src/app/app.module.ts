@@ -17,6 +17,9 @@ import { SideBarComponent } from './shared/side-bar/side-bar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { TokenInterceptor } from './token-interceptor';
+import { ViewProductComponent } from './product/view-product/view-product.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { TokenInterceptor } from './token-interceptor';
     HomeComponent,
     CreateProductComponent,
     ProductTileComponent,
-    SideBarComponent
+    SideBarComponent,
+    ViewProductComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,8 @@ import { TokenInterceptor } from './token-interceptor';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     FontAwesomeModule,
-    EditorModule
+    EditorModule,
+    NgbModule
   ],
   providers: [
     {

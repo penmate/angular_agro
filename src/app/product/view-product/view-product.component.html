@@ -1,0 +1,47 @@
+<div class="container" *ngIf="product">
+    <div class="row">
+      <hr />
+      <div class="col-md-9">
+        <div class="row product">
+          <div class="col-md-11">
+            <span>
+              <span> Posted
+                <span> {{product.duration}} </span>
+                by
+                <a *ngIf="product.userName === null" class="username" href="">Anonymous</a>
+                <a *ngIf="product.userName != null" class="username" href="">{{product.userName}}</a>
+              </span>
+            </span>
+            <hr />
+            <a routerLink="product.url" class="product-title">{{product.productName}}</a>
+            <div>
+              <p class="product-text" [innerHtml]="product.description"></p>
+            </div>
+            <div class="product-comment">
+              <form [formGroup]="commentForm" (ngSubmit)="postComment()">
+                <div class="form-group">
+                  <textarea class="form-control" [formControlName]="'text'" placeholder="Your Thoughts?"></textarea>
+                </div>
+                <button type="submit" class="login float-right">Comment</button>
+              </form>
+            </div>
+            <div style="margin-top: 60px;" *ngFor="let comment of comments">
+              <div class="comment">
+                <div class="username">
+                  <a routerLink="/user/comment.username">{{comment.userName}}</a>
+                </div>
+                <div>
+                  <p>{{comment.duration}}</p>
+                </div>
+                <b>{{comment.text}}</b>
+              </div>
+              <hr />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <app-side-bar></app-side-bar>
+      </div>
+    </div>
+  </div>

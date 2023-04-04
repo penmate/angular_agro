@@ -1,0 +1,50 @@
+.product-title {
+    font-size: 28px;
+    font-weight: bold;
+    opacity: 1;
+  }
+  
+  .product-title:hover {
+    opacity: 0.6;
+  }
+  
+  .subreddit-text {
+    font-weight: bold;
+  }
+  
+  .product-url {
+    color: black;
+  }
+  
+  .username{
+      color: gray;
+  }
+  
+  .product-text{
+      margin-top: 10px;
+  }
+  
+  .product{
+      --product-line-color: #ccc;    
+      border: 1px solid #ccc;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      background-color: rgba(255,255,255,0.8);
+      color: #878A8C;
+      position: relative;
+      border-radius: 4px;
+      padding:5px;
+  }
+  
+  .comment{    
+      --product-line-color: #ccc;    
+      border: 1px solid #ccc;    
+      margin-bottom: 10px;
+      overflow: hidden;
+      background-color: rgba(255,255,255,0.8);
+      color: #878A8C;
+      position: relative;
+      border-radius: 4px;
+      padding:5px;
+  }

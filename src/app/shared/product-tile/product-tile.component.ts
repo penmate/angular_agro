@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductModel } from '../product-model';
 import { ProductService } from '../product.service';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-tile',
@@ -12,15 +13,18 @@ export class ProductTileComponent implements OnInit {
 
   faComments = faComments;
 
-  products: Array<ProductModel> = [];
+  @Input()
+  products?: ProductModel[];
 
-  constructor(private productService: ProductService) {
-    this.productService.getAllProducts().subscribe(product => {
-      this.products = product;
-    });
+  constructor(private router: Router) {
+
   }
 
   ngOnInit(): void {
+  }
+
+  goToProduct(id: number): void {
+    this.router.navigateByUrl('/view-product/' + id);
   }
 
 }
