@@ -16,7 +16,7 @@ export class ProductService {
     return this.http.get<Array<ProductModel>>('http://localhost:8080/api/products/');
   }
 
-  createProduct(productPayload: CreateProductPayload): Observable<any> {
+  createProduct(productPayload: FormData): Observable<any> {
     console.log("Log from createProduct productService" + (new Error()).stack)
     return this.http.post('http://localhost:8080/api/products/', productPayload);
   }

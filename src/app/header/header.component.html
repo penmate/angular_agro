@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="flex-grow-1">
             <a aria-label="Home" class="logo" routerLink="/">
@@ -26,4 +26,29 @@
             </div>
         </div>
     </nav>
-</header>
+</header> -->
+<mat-toolbar color="primary">
+
+    <a aria-label="Home" class="logo" routerLink="/">
+        <img class="font-weight-bold" src="https://www.svgrepo.com/show/270536/earth-day-ecology.svg" class="agro-icon-svg">
+        <span class="agro-text">
+            Agro Website
+        </span>
+    </a>
+<span class="example-spacer"></span>
+<button class="btn btn-primary" *ngIf="!isLoggedIn" routerLink="/login">
+    Login
+</button>
+<button  class="btn btn-success m-2" *ngIf="!isLoggedIn" routerLink="/sign-up">
+    Signup
+</button>
+<button mat-raised-button color="warn" *ngIf="isLoggedIn" (click)="logout()">
+    Logout
+</button>
+<button mat-raised-button color="primary" *ngIf="isLoggedIn" (click)="goToUserProfile()">
+    Profile
+</button>
+<button mat-raised-button color="primary" *ngIf="isLoggedIn">
+    Products
+</button>
+</mat-toolbar>

@@ -22,7 +22,22 @@
                   alignleft aligncenter alignright alignjustify | \
                   bullist numlist outdent indent | removeformat | help'
               }"></editor>
-
+              <div>
+                <input type="file" multiple value="select" #selectFile
+                (change)="onImageSelected($event)">
+              </div>
+              <div class="mt-5">
+                <div class="row">
+                  <mat-grid-list cols="4" rowHeight="1:1">
+                    <mat-grid-title *ngFor="let file of productPayload.productImages; let i = index;">
+                      <div style="position: relative">
+                        <span class="btn-remove-image" (click)="removeImage(i)">x</span>
+                        <img [src]="file.url" width="100px" height="100px">
+                      </div>
+                    </mat-grid-title>
+                  </mat-grid-list>
+                </div>
+              </div>
             <span>
               <div style="margin-top: 5px" class="float-right">
                 <button (click)="discardProduct()" class="btnDiscard">Discard</button>
