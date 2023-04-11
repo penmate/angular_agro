@@ -7,21 +7,17 @@
             <div class="create-post-heading">Create Your Own Listing</div>
             <hr />
             <input type="text" [formControlName]="'name'" class="form-control" style="margin-top: 5px"
-              placeholder="Title">
+              placeholder="Product Name">
+            <input type="text" [formControlName]="'description'" class="form-control" style="margin-top: 5px"
+            placeholder="Description">
+            <input type="text" [formControlName]="'price'" class="form-control" style="margin-top: 5px"
+            placeholder="Price">
+            <input type="text" [formControlName]="'location'" class="form-control" style="margin-top: 5px"
+            placeholder="Location">
+            <input type="text" [formControlName]="'quality'" class="form-control" style="margin-top: 5px"
+            placeholder="Quality">
   
-              <editor [formControlName]="'description'" [init]="{
-                height: 500,
-                menubar: false,
-                plugins: [
-                  'advlist autolink lists link image charmap print preview anchor',
-                  'searchreplace visualblocks code fullscreen',
-                  'insertdatetime media table paste code help wordcount'
-                ],
-                toolbar:
-                  'undo redo | formatselect | bold italic backcolor | \
-                  alignleft aligncenter alignright alignjustify | \
-                  bullist numlist outdent indent | removeformat | help'
-              }"></editor>
+
               <div>
                 <input type="file" multiple value="select" #selectFile
                 (change)="onImageSelected($event)">

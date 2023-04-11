@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginRequestPayload: LoginRequestPayload;
   registerSuccessMessage?: string;
-  isError?: boolean;
 
   constructor(private authService: AuthService, private activatedRoute: ActivatedRoute,
     private router: Router, private toastr: ToastrService) {
@@ -47,12 +46,11 @@ export class LoginComponent implements OnInit {
     this.loginRequestPayload.password = this.loginForm.get('password')?.value;
 
     this.authService.login(this.loginRequestPayload).subscribe(data => {
-      this.isError = false;
+
       this.router.navigateByUrl('');
       this.toastr.success('Login Successful');
     }, error => {
-      this.isError = true;
-      throwError(error);
+      this.toastr.error('Login Failed! Please check your credentials!');
     });
   }
 }

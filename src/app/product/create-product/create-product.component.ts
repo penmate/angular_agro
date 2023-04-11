@@ -22,12 +22,19 @@ export class CreateProductComponent implements OnInit {
     this.productPayload = {
       name: '',
       description: '',
+      price: 0,
+      discountPrice: 0,
+      location: '',
+      quality: '',
       productImages: []
     }
 
     this.createProductForm = new FormGroup({
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
+      price: new FormControl('', Validators.required),
+      location: new FormControl('', Validators.required),
+      quality: new FormControl('', Validators.required)
     });
   }
 
@@ -36,7 +43,14 @@ export class CreateProductComponent implements OnInit {
   createProduct() {
     this.productPayload.name = this.createProductForm.get('name')?.value;
     this.productPayload.description = this.createProductForm.get('description')?.value;
-    this.productService.createProduct(this.prepareFormData(this.productPayload)).subscribe((data) => {
+    this.productPayload.price = this.createProductForm.get('price')?.value;
+    this.productPayload.discountPrice = this.createProductForm.get('price')?.value;
+    this.productPayload.location = this.createProductForm.get('location')?.value;
+    this.productPayload.quality = this.createProductForm.get('quality')?.value;
+    console.log("ASD!!!!!!!!!! " + this.productPayload.location)
+    var productFormData = this.prepareFormData(this.productPayload)
+    console.log(productFormData);
+    this.productService.createProduct(productFormData).subscribe((data) => {
       this.router.navigateByUrl('/');
     }, error => {
       throwError(error);
