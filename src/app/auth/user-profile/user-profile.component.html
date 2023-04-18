@@ -1,10 +1,21 @@
-<div class="container">
-    <div>
-      Welcome <b>{{name}}</b>
-    </div>
-    <hr />
-    <div>
-        Your Posts:
-      </div>
-      <app-product-tile [products]="products"></app-product-tile>
+<div class="container h-100">
+  <div class="row m-2 h-100">
+    <mat-card class="col-sm d-inline-block">
+      <span *ngIf="searchedUser"><mat-icon>face</mat-icon>{{ searchedUser.username }}</span>
+      <mat-divider class="my-2" inset="true"></mat-divider>
+      <span *ngIf="searchedUser">{{ searchedUser.firstname }} {{ searchedUser.lastname }}</span>
+      <mat-divider class="my-2" inset="true"></mat-divider>
+      <span *ngIf="searchedUser"><mat-icon>email</mat-icon> {{ searchedUser.email }}</span>
+      <mat-divider class="my-2" inset="true"></mat-divider>
+      <span *ngIf="searchedUser"><mat-icon>phone</mat-icon> {{ searchedUser.phone }} </span>
+      <mat-divider class="my-2" inset="true"></mat-divider>
+      <span *ngIf="searchedUser">Last login: {{ searchedUser.duration }}</span>
+    </mat-card>
+    <mat-card class="col-sm">
+      One of three columns
+    </mat-card>
+    <mat-card class="col-sm">
+      One of three columns
+    </mat-card>
   </div>
+</div>

@@ -1,47 +1,96 @@
 <div class="container">
-    <div class="row">
-      <hr />
-      <div class="create-product-container col-md-9">
-        <form class="product-form" [formGroup]="createProductForm" (ngSubmit)="createProduct()">
-          <div class="form-group">
-            <div class="create-post-heading">Create Your Own Listing</div>
-            <hr />
-            <input type="text" [formControlName]="'name'" class="form-control" style="margin-top: 5px"
-              placeholder="Product Name">
-            <input type="text" [formControlName]="'description'" class="form-control" style="margin-top: 5px"
-            placeholder="Description">
-            <input type="text" [formControlName]="'price'" class="form-control" style="margin-top: 5px"
-            placeholder="Price">
-            <input type="text" [formControlName]="'location'" class="form-control" style="margin-top: 5px"
-            placeholder="Location">
-            <input type="text" [formControlName]="'quality'" class="form-control" style="margin-top: 5px"
-            placeholder="Quality">
-  
+    <mat-card-content class="m-2">
 
-              <div>
-                <input type="file" multiple value="select" #selectFile
-                (change)="onImageSelected($event)">
+      <div class="row">
+        <div class="col-6">
+          <form class="product-form" [formGroup]="createProductForm" (ngSubmit)="createProduct()">
+            <div class="form-group">
+              <div class="create-post-heading">Create Your Own Listing</div>
+              <hr />
+              <input type="text" [formControlName]="'name'" class="form-control" style="margin-top: 5px"
+                placeholder="Product Name">
+
+                <mat-label style="margin-top: 5px">Category</mat-label>
+                <mat-form-field class="w-100" appearance="fill" style="margin-top: 5px;">
+                  <mat-select [formControlName]="'productCondition'">
+                    <mat-option value="plant">Plant</mat-option>
+                    <mat-option value="animal">Animal</mat-option>
+                    <mat-option value="vehicle">Vehicle</mat-option>
+                    <mat-option value="forage">Forage</mat-option>
+                    <mat-option value="tool">Tool</mat-option>
+                  </mat-select>
+                </mat-form-field>
+  
+              <mat-form-field appearance="outline" class="w-100" style="margin-top: 5px">
+                <mat-label>Description</mat-label>
+                <textarea matInput [formControlName]="'description'" placeholder="Describe Your Product">
+                </textarea>
+              </mat-form-field>
+  
+              <input type="number" [formControlName]="'price'" class="form-control" style="margin-top: 5px"
+              placeholder="Price">
+              <input type="text" [formControlName]="'location'" class="form-control" style="margin-top: 5px"
+              placeholder="Location">
+
+              <mat-label style="margin-top: 5px">Condition</mat-label>
+              <mat-form-field class="w-100" appearance="fill" style="margin-top: 5px;">
+                <mat-select [formControlName]="'productCondition'">
+                  <mat-option value="0">New</mat-option>
+                  <mat-option value="1">Used - Like New</mat-option>
+                  <mat-option value="2">Used - Good</mat-option>
+                  <mat-option value="3">Used - Fair</mat-option>
+                </mat-select>
+              </mat-form-field>
+  
+              <mat-label style="margin-top: 5px">Amount Type</mat-label>
+              <mat-form-field class="w-100" appearance="fill" style="margin-top: 5px;">
+                <mat-select [formControlName]="'amountType'">
+                  <mat-option value="0">Gram</mat-option>
+                  <mat-option value="1">Kilogram</mat-option>
+                  <mat-option value="2">Tons</mat-option>
+                  <mat-option value="3">Amount</mat-option>
+                </mat-select>
+              </mat-form-field>
+  
+                <input type="number" [formControlName]="'amount'" class="form-control" style="margin-top: 5px"
+                placeholder="Amount">
+                
+              <div class="d-flex flex-column justify-content-center">
+                <span>
+                  <button type="button" class="btn btn-primary w-75 my-2">Post</button>
+                  <button type="button" class="btn btn-outline-danger w-75" (click)="discardProduct()">Discard</button>
+                </span>
               </div>
-              <div class="mt-5">
-                <div class="row">
-                  <mat-grid-list cols="4" rowHeight="1:1">
-                    <mat-grid-title *ngFor="let file of productPayload.productImages; let i = index;">
-                      <div style="position: relative">
-                        <span class="btn-remove-image" (click)="removeImage(i)">x</span>
-                        <img [src]="file.url" width="100px" height="100px">
-                      </div>
-                    </mat-grid-title>
-                  </mat-grid-list>
-                </div>
-              </div>
-            <span>
-              <div style="margin-top: 5px" class="float-right">
-                <button (click)="discardProduct()" class="btnDiscard">Discard</button>
-                <button class="btnCreatePost">Post</button>
-              </div>
-            </span>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-6">
+
+          <div class="dropzone d-flex justify-content-center"
+          appDrag (files) = "fileDropped($event)">
+            <div class="align-self-center">
+              <span>Drag and drop your images or <a class="browse-button" (click)="selectFile.click()">choose</a> here</span>
+            </div>
           </div>
-        </form>
+
+          <div style="margin-top: 15px">
+            <input style="display: none" type="file" multiple value="select" #selectFile
+            (change)="onImageSelected($event)">
+          </div>
+          <div class="mt-5">
+            <div class="flex-row">
+              <mat-grid-list cols="4" rowHeight="2:1">
+                <mat-grid-title style="width: 100px;" *ngFor="let file of productPayload.productImages; let i = index;">
+                  <mat-card class="flex p-2" style="position: relative">
+                    <span class="btn-remove-image" (click)="removeImage(i)">X</span>
+                    <img [src]="file.url" width="100px" height="100px">
+                  </mat-card>
+                </mat-grid-title>
+              </mat-grid-list>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </mat-card-content>
   </div>

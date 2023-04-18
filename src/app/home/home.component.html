@@ -3,7 +3,19 @@
       <div class="row">
         <hr />
         <div class="col-md-9">
+          <form class="product-form" [formGroup]="searchFormGroup">
+          <mat-form-field appearance="outline" class="w-100" style="margin-top: 5px">
+            <mat-label>Search for Product</mat-label>
+            <input
+            #searchkeyword
+            (keyup.enter)="searchByKeyWord(searchkeyword.value)" 
+            matInput [formControlName]="'search'" placeholder="Type for Search">
+            <mat-icon matSuffix>search</mat-icon>
+            <mat-hint>Hit Enter</mat-hint>
+          </mat-form-field>
+          </form>
           <app-product-tile [products]="products"></app-product-tile>
+
         </div>
         <div class="col-md-3">
           <app-side-bar></app-side-bar>

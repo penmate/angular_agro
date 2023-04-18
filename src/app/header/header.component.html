@@ -42,13 +42,10 @@
 <button  class="btn btn-success m-2" *ngIf="!isLoggedIn" routerLink="/sign-up">
     Signup
 </button>
-<button mat-raised-button color="warn" *ngIf="isLoggedIn" (click)="logout()">
+<button mat-raised-button color="primary"  class="m-2" *ngIf="isLoggedIn" (click)="goToUserProfile()">
+    Profile({{username}})
+</button>
+<button mat-raised-button color="warn" class="mr-4" *ngIf="isLoggedIn" (click)="logout()">
     Logout
-</button>
-<button mat-raised-button color="primary" *ngIf="isLoggedIn" (click)="goToUserProfile()">
-    Profile
-</button>
-<button mat-raised-button color="primary" *ngIf="isLoggedIn">
-    Products
 </button>
 </mat-toolbar>

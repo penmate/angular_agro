@@ -48,3 +48,23 @@
       border-radius: 4px;
       padding:5px;
   }
+  .owner{
+    opacity: 70%;
+}
+
+.btnCommments:hover{
+    opacity: 0.65;
+    cursor: pointer;
+}
+
+.product-title{
+    font-size: 32px;
+    margin-top: 4px;
+    opacity: 75%;
+    color: rgba(0, 0, 123, 0.81);
+}
+
+.price{
+    font-weight: bold;
+    font-size: large;
+}

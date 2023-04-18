@@ -11,13 +11,13 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getAllProducts(): Observable<Array<ProductModel>> {
-    console.log("Log from getAllProducts productService" + (new Error()).stack)
-    return this.http.get<Array<ProductModel>>('http://localhost:8080/api/products/');
+  getAllProducts(searchKey: string = ""): Observable<Array<ProductModel>> {
+    // console.log("Log from getAllProducts productService" + (new Error()).stack)
+    return this.http.get<Array<ProductModel>>('http://localhost:8080/api/products?searchKey=' + searchKey);
   }
 
   createProduct(productPayload: FormData): Observable<any> {
-    console.log("Log from createProduct productService" + (new Error()).stack)
+    // console.log("Log from createProduct productService" + (new Error()).stack)
     return this.http.post('http://localhost:8080/api/products/', productPayload);
   }
 

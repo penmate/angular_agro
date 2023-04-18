@@ -1,47 +1,54 @@
 <div class="container" *ngIf="product">
-    <div class="row">
-      <hr />
-      <div class="col-md-9">
-        <div class="row product">
-          <div class="col-md-11">
-            <span>
-              <span> Posted
-                <span> {{product.duration}} </span>
-                by
-                <a *ngIf="product.userName === null" class="username" href="">Anonymous</a>
-                <a *ngIf="product.userName != null" class="username" href="">{{product.userName}}</a>
-              </span>
-            </span>
-            <hr />
-            <a routerLink="product.url" class="product-title">{{product.productName}}</a>
-            <div>
-              <p class="product-text" [innerHtml]="product.description"></p>
-            </div>
-            <div class="product-comment">
-              <form [formGroup]="commentForm" (ngSubmit)="postComment()">
-                <div class="form-group">
-                  <textarea class="form-control" [formControlName]="'text'" placeholder="Your Thoughts?"></textarea>
-                </div>
-                <button type="submit" class="login float-right">Comment</button>
-              </form>
-            </div>
-            <div style="margin-top: 60px;" *ngFor="let comment of comments">
-              <div class="comment">
-                <div class="username">
-                  <a routerLink="/user/comment.username">{{comment.userName}}</a>
-                </div>
-                <div>
-                  <p>{{comment.duration}}</p>
-                </div>
-                <b>{{comment.text}}</b>
-              </div>
-              <hr />
-            </div>
-          </div>
+  <div class="row my-2">
+    <div class="col-sm-9"><mat-card>
+      <span class="owner">posted by 
+        <a *ngIf="product.userName === null" class="username" href="">Anonymous</a>
+        <a *ngIf="product.userName != null" class="username" href="">{{product.userName}}</a> {{product.duration}}
+      </span>
+      <mat-divider class="my-2" inset="true"></mat-divider>
+      <span class="product-title">{{product.productName}}</span>
+      <mat-divider class="my-2" style="opacity: 0" inset="true"></mat-divider>
+      <span class="product-description"><mat-icon>short_text</mat-icon>  {{product.description}}</span>
+      <mat-divider class="my-2" inset="true"></mat-divider>
+      
+      <span class="price"><mat-icon>payment</mat-icon> {{product.price}} Ft</span>
+      <mat-divider class="my-2" inset="true"></mat-divider>
+      <span class="location"><mat-icon>location_on</mat-icon> {{product.location}}</span>
+      <mat-divider class="my-2" inset="true"></mat-divider>
+      <mat-grid-list cols="4" rowHeight="2:1">
+        <mat-grid-title style="width: 100px;" *ngFor="let file of images; let i = index;">
+          <mat-card class="flex p-2" style="position: relative">
+                  <div class="row">
+                    <div class="col">                  
+                      <img class="img-thumbnail rounded float-left" [src]="images[0].url"></div>
+                      <div class="col"></div>
+                      <div class="col"></div>
+                      <div class="col"></div>
+                  </div>
+          </mat-card>
+        </mat-grid-title>
+      </mat-grid-list>
+      <span>
+        <div class="product-comment mb-3">
+          <form [formGroup]="commentForm" (ngSubmit)="postComment()">
+            <mat-form-field appearance="outline" class="w-100" style="margin-top: 5px">
+              <mat-label>Drop a Comment</mat-label>
+              <textarea matInput minlength="1" [formControlName]="'text'" placeholder="Describe Your Opinion">
+              </textarea>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">Comment</button>
+          </form>
         </div>
-      </div>
-      <div class="col-md-3">
-        <app-side-bar></app-side-bar>
-      </div>
-    </div>
+      </span>
+      <mat-card class="mx-2" *ngFor="let comment of comments">
+        <a routerLink="/user/comment.username">{{comment.userName}}</a>
+        <mat-divider class="my-2" inset="true"></mat-divider>
+        {{comment.text}}
+      </mat-card>
+    </mat-card>
+
   </div>
+  <div class="col-sm-3">
+    <app-side-bar></app-side-bar>
+  </div>
+</div>

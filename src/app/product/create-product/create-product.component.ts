@@ -4,9 +4,8 @@ import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { ProductService } from 'src/app/shared/product.service';
 import { CreateProductPayload } from './create-product.payload';
-import { ImagePayload } from './image.payload';
+import { ImagePayload } from '../../image/image.payload';
 import { DomSanitizer } from '@angular/platform-browser';
-import { type } from 'os';
 
 @Component({
   selector: 'app-create-product',
@@ -25,7 +24,10 @@ export class CreateProductComponent implements OnInit {
       price: 0,
       discountPrice: 0,
       location: '',
-      quality: '',
+      productCondition: 3,
+      amount: 0,
+      amountType: 0,
+      availability: 0,
       productImages: []
     }
 
@@ -34,7 +36,9 @@ export class CreateProductComponent implements OnInit {
       description: new FormControl('', Validators.required),
       price: new FormControl('', Validators.required),
       location: new FormControl('', Validators.required),
-      quality: new FormControl('', Validators.required)
+      productCondition: new FormControl('', Validators.required),
+      amount: new FormControl('', Validators.required),
+      amountType: new FormControl('', Validators.required)
     });
   }
 
@@ -46,10 +50,11 @@ export class CreateProductComponent implements OnInit {
     this.productPayload.price = this.createProductForm.get('price')?.value;
     this.productPayload.discountPrice = this.createProductForm.get('price')?.value;
     this.productPayload.location = this.createProductForm.get('location')?.value;
-    this.productPayload.quality = this.createProductForm.get('quality')?.value;
-    console.log("ASD!!!!!!!!!! " + this.productPayload.location)
+    this.productPayload.productCondition = this.createProductForm.get('productCondition')?.value;
+    this.productPayload.amount = this.createProductForm.get('amount')?.value;
+    this.productPayload.amountType = this.createProductForm.get('amountType')?.value;
+
     var productFormData = this.prepareFormData(this.productPayload)
-    console.log(productFormData);
     this.productService.createProduct(productFormData).subscribe((data) => {
       this.router.navigateByUrl('/');
     }, error => {
@@ -94,5 +99,9 @@ export class CreateProductComponent implements OnInit {
       this.productPayload.productImages.push(imagePayload);
     }
     console.log(event);
+  }
+
+  fileDropped(imagePayload: ImagePayload) {
+    this.productPayload.productImages.push(imagePayload);
   }
 }

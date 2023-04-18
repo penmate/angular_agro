@@ -3,6 +3,7 @@ import { ProductModel } from '../shared/product-model';
 import { ProductService } from '../shared/product.service';
 import { AuthService } from '../auth/shared/auth.service';
 import { Router } from '@angular/router';
+import { FormControl,FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -13,20 +14,31 @@ export class HomeComponent implements OnInit {
 
   products: Array<ProductModel> = [];
   isLoggedIn?: boolean;
+  searchFormGroup: FormGroup;
+
 
   constructor(private productService: ProductService, private authService: AuthService, private router: Router) {
     this.isLoggedIn = this.authService.isLoggedIn();
-    this.productService.getAllProducts().subscribe(product => {
+    this.getAllProducts();
+    this.searchFormGroup = new FormGroup({
+      search: new FormControl()
+    })
+  }
+
+  ngOnInit(): void {
+  }
+
+  getAllProducts(searchKey: string = "") {
+    this.productService.getAllProducts(searchKey).subscribe(product => {
       this.products = product;
     });
   }
 
-  ngOnInit(): void {
-    if (this.authService.isTokenExpired(this.authService.getJwtToken()) === true) {
-        this.authService.logout();
-        this.isLoggedIn = false;
-        this.router.navigateByUrl('/login');
-    }
+  searchByKeyWord(searchKeyWord: string) {
+    console.log(searchKeyWord)
+    this.products = [];
+    this.getAllProducts(searchKeyWord);
+
   }
 
 }

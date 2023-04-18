@@ -1,8 +1,9 @@
-export interface SignupRequestPayload{
+export interface UserResponse {
+    userId: number;
     username: string;
     firstname: string;
     lastname: string;
     phone: string;
-    password: string;
     email: string;
+    duration: string;
 }

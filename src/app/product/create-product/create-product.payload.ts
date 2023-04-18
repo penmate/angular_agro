@@ -1,4 +1,7 @@
-import { ImagePayload } from "./image.payload";
+import { ImagePayload } from "../../image/image.payload";
+import { Availability } from "../../shared/model/Availability";
+import { AmountType } from "../../shared/model/AmountType";
+import { ProductCondition } from "../../shared/model/ProductCondition";
 
 export interface CreateProductPayload {
     name: string;
@@ -6,6 +9,9 @@ export interface CreateProductPayload {
     price: number;
 	discountPrice: number;
 	location: string;
-	quality: string;
+	productCondition: ProductCondition;
+    amount: number;
+    amountType: AmountType;
+    availability: Availability;
     productImages: ImagePayload[];
 }

@@ -6,6 +6,7 @@ import { map, tap } from 'rxjs/operators';
 import { LoginRequestPayload } from '../login/login-request.payload';
 import { LoginResponse } from '../login/login-response.payload';
 import { LocalStorageService } from 'ngx-webstorage';
+import { UserResponse } from 'src/app/shared/model/user.response';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,12 @@ export class AuthService {
         this.username.emit(data.username);
         return true;
       }));
+    }
+
+    getUser(username: string) : Observable<UserResponse> {
+      console.log("KOK" + username);
+      return this.httpClient.get<UserResponse>('http://localhost:8080/api/user/'+ username);
+      
     }
   
     refreshToken() {
@@ -83,8 +90,8 @@ export class AuthService {
     }
 
     isTokenExpired(token: string) {
+      console.log(token);
       const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
-      // console.log((Math.floor((new Date).getTime() / 1000).toString() + " >= " + expiry.toString()));
       return (Math.floor((new Date).getTime() / 1000)) >= expiry;
     }
     

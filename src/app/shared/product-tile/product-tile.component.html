@@ -1,27 +1,25 @@
-<!-- Display products-->
-<div class="row product" *ngFor="let product of products">
-    <!-- Section to Display product Information-->
-    <div class="col-md-11">
-      <span class="subreddit-info">
-        <span> posted by <a class="username" routerLink="/user/{{product.userName}}">{{product.userName}}</a></span>
-        <span> {{product.duration}}</span>
+<div class="container">
+  <div class="row" *ngFor="let product of products">
+    <div class="col-sm-12"><mat-card>
+      <span class="owner">
+        posted by <a class="username" routerLink="/user-profile/{{product.userName}}">{{product.userName}}</a> {{product.duration}}
       </span>
-      <hr />
-      <div class="product-title">
-        <a class="productname">{{product.productName}}</a>
-      </div>
-      <div>
-        <p [innerHtml]="product.description" class="product-text"></p>
-      </div>
-      <hr />
+      <mat-divider class="my-2" inset="true"></mat-divider>
+      <span class="product-title">{{product.productName}}</span>
+      <mat-divider class="my-2" inset="true"></mat-divider>
+      <span class="price">{{product.price}} Ft</span>
+      <mat-divider class="my-2" inset="true"></mat-divider>
+      <span class="location">{{product.location}}</span>
+      <mat-divider class="my-2" inset="true"></mat-divider>
       <span>
         <a class="btnCommments" role="button">
           <fa-icon [icon]="faComments"></fa-icon>
           Comments({{product.commentCount}})
         </a>
-        <button class="login" (click)="goToProduct(product.id)">
+        <button mat-raised-button class="mx-2" color="primary" (click)="goToProduct(product.id)">
           Show Product
         </button>
       </span>
-    </div>
+    </mat-card>
   </div>
+</div>
