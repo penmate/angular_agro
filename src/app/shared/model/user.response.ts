@@ -1,5 +1,5 @@
 export interface UserResponse {
-    userId: number;
+    userId?: number,
     username: string;
     firstname: string;
     lastname: string;

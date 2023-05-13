@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row" *ngFor="let product of products">
-    <div class="col-sm-12"><mat-card>
+    <div class="col-sm-12 my-2"><mat-card>
       <span class="owner">
         posted by <a class="username" routerLink="/user-profile/{{product.userName}}">{{product.userName}}</a> {{product.duration}}
       </span>

@@ -1,13 +1,6 @@
 <div class="container mt-5">
     <div class="card" style="padding: 20px;">
-        <form [formGroup]="signupForm" (ngSubmit)="signup()">
-            <mat-form-field appearance="outline" class="w-75">
-                <mat-label>Username</mat-label>
-                <input matInput type="text" [formControlName]="'username'" class="text-center" required autofocus placeholder="MyUsername" autofocus>
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint>Username</mat-hint>
-            </mat-form-field>
-
+        <form [formGroup]="updateForm" (ngSubmit)="update()">
             <mat-form-field appearance="outline" class="w-75">
                 <mat-label>Email</mat-label>
                 <input matInput type="email" [formControlName]="'email'" id="email_address" class="text-center" placeholder="example@email.eu" name="email-address" required>
@@ -33,20 +26,7 @@
                 <input matInput type="number" [formControlName]="'phone'" class="text-center" required autofocus placeholder="+36123456">
                 <mat-icon matSuffix>phone</mat-icon>
             </mat-form-field>
-            
-            <mat-form-field appearance="outline" class="w-75">
-                <mat-label>Password</mat-label>
-                <input matInput type="password" id="password" class="text-center" [formControlName]="'password'" name="password"
-                    required placeholder="****">
-                <mat-icon matSuffix>password</mat-icon>
-                <mat-hint>Password</mat-hint>
-            </mat-form-field>
-
-            <button type="submit" class="btn btn-success w-75">Signup</button>
-            <div class="m-3">
-                <span>Existing user? <a routerLink="/login">Log In</a></span>
-            </div>
-
+            <button type="submit" class="btn btn-success w-75">Update</button>
         </form>
     </div>
 </div>

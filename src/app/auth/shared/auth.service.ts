@@ -7,6 +7,7 @@ import { LoginRequestPayload } from '../login/login-request.payload';
 import { LoginResponse } from '../login/login-response.payload';
 import { LocalStorageService } from 'ngx-webstorage';
 import { UserResponse } from 'src/app/shared/model/user.response';
+import { UserUpdateRequest } from '../user-update/user-update-request.payload';
 
 @Injectable({
   providedIn: 'root'
@@ -44,9 +45,12 @@ export class AuthService {
     getUser(username: string) : Observable<UserResponse> {
       console.log("KOK" + username);
       return this.httpClient.get<UserResponse>('http://localhost:8080/api/user/'+ username);
-      
     }
   
+    update(userUpdateRequest: UserUpdateRequest): Observable<any> {
+      return this.httpClient.put('http://localhost:8080/api/user/update', userUpdateRequest);
+    }
+
     refreshToken() {
       return this.httpClient.post<LoginResponse>('http://localhost:8080/api/auth/refresh/token',
         this.refreshTokenPayload)

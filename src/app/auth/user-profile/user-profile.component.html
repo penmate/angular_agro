@@ -1,6 +1,6 @@
 <div class="container h-100">
-  <div class="row m-2 h-100">
-    <mat-card class="col-sm d-inline-block">
+  <div class="row m-4">
+    <mat-card class="col-sm-4 d-inline-block">
       <span *ngIf="searchedUser"><mat-icon>face</mat-icon>{{ searchedUser.username }}</span>
       <mat-divider class="my-2" inset="true"></mat-divider>
       <span *ngIf="searchedUser">{{ searchedUser.firstname }} {{ searchedUser.lastname }}</span>
@@ -11,11 +11,32 @@
       <mat-divider class="my-2" inset="true"></mat-divider>
       <span *ngIf="searchedUser">Last login: {{ searchedUser.duration }}</span>
     </mat-card>
-    <mat-card class="col-sm">
-      One of three columns
-    </mat-card>
-    <mat-card class="col-sm">
-      One of three columns
+    <mat-card class="my-2 col-sm-8">
+      <span  *ngIf="products.length > 0">
+        <mat-card>
+        <div class="row d-flex">
+          <div class="col-sm">Name</div>
+          <div class="col-sm">Price</div>
+          <div class="col-sm">Location</div>
+          <div class="col-sm"></div>
+        </div>
+      </mat-card>
+      <mat-card>
+        <div class="row d-flex my-2" *ngFor="let product of products">
+          <div class="col-sm">{{product.productName}}</div>
+          <div class="col-sm">{{product.price}}</div>
+          <div class="col-sm">{{product.location}}</div>
+          <div class="col d-inline-flex p-2">
+            <button type="button" class="btn btn-outline-info float-right" (click)="goToProduct(product.id)"><mat-icon>remove_red_eye</mat-icon></button>
+            <button type="button" class="btn btn-primary float-right mx-2" (click)="goToEditProduct(product.id)" *ngIf="priviliges===true"><mat-icon>edit</mat-icon></button>
+            <button type="button" class="btn btn-outline-danger float-right" (click)="deleteProduct(product.id)" *ngIf="priviliges===true"><mat-icon>delete</mat-icon></button>
+          </div>
+        </div>
+      </mat-card>
+    </span> 
+    <span *ngIf="products.length === 0">
+    No Products Yet
+    </span>
     </mat-card>
   </div>
 </div>

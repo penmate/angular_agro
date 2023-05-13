@@ -23,7 +23,7 @@ export class ImageService {
 
     const imagePayloads: ImagePayload[] = [];
     
-    for(let i = 0; i < productImages.length; i++) {
+    for (let i = 0; i < productImages.length; i++) {
       const imageData = productImages[i];
 
       const imageBlob = this.dataURItoBlob(imageData.picByte, imageData.type);
@@ -46,7 +46,7 @@ export class ImageService {
     const arrayBuffer = new ArrayBuffer(byteString.length);
     const int8Array = new Uint8Array(arrayBuffer);
 
-    for(let i = 0; i < byteString.length; i++) {
+    for (let i = 0; i < byteString.length; i++) {
       int8Array[i] = byteString.charCodeAt(i);
     }
 

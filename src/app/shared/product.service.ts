@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductModel } from './product-model';
@@ -21,11 +21,15 @@ export class ProductService {
     return this.http.post('http://localhost:8080/api/products/', productPayload);
   }
 
-  getProduct(id: number): Observable<ProductModel> {
+  getProductById(id: number): Observable<ProductModel> {
     return this.http.get<ProductModel>('http://localhost:8080/api/products/' + id);
   }
 
   getAllProductsByUser(name: string): Observable<ProductModel[]> {
     return this.http.get<ProductModel[]>('http://localhost:8080/api/products/by_user/' + name);
+  }
+
+  deleteProductById(id: number): Observable<any> {
+    return this.http.delete('http://localhost:8080/api/products/' + id);
   }
 }

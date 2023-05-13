@@ -30,6 +30,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/user-profile/' + this.username);
   }
 
+  goToUserUpdate() {
+    this.router.navigateByUrl('user-update/' + this.username);
+  }
+
   logout() {
     this.authService.logout();
     this.isLoggedIn = false;

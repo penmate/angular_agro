@@ -32,6 +32,10 @@ import { DragDirective } from './drag.directive';
 import {MatDividerModule} from '@angular/material/divider';
 import { CategoryTileComponent } from './shared/category-tile/category-tile.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { UserUpdateComponent } from './auth/user-update/user-update.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDialogModule} from '@angular/material/dialog';
+import { UpdateProductComponent } from './product/update-product/update-product.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,9 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     UserProfileComponent,
     DragDirective,
     CategoryTileComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    UserUpdateComponent,
+    UpdateProductComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +74,9 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     MatInputModule,
     MatSelectModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatMenuModule,
+    MatDialogModule
   ],
   providers: [
     {

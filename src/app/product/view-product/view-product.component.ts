@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { CommentPayload } from 'src/app/comment/comment.payload';
 import { CommentService } from 'src/app/comment/comment.service';
@@ -25,7 +25,7 @@ export class ViewProductComponent implements OnInit {
   images?: ImagePayload[];
 
   constructor(private productService: ProductService, private activateRoute: ActivatedRoute,
-    private commentService: CommentService, private imageService: ImageService, private sanitizer: DomSanitizer) {
+    private commentService: CommentService, private imageService: ImageService, private sanitizer: DomSanitizer, private router: Router) {
     this.productId = this.activateRoute.snapshot.params['id'];
 
     this.commentForm = new FormGroup({
@@ -54,10 +54,12 @@ export class ViewProductComponent implements OnInit {
   }
 
   private getproductById() {
-    this.productService.getProduct(this.productId).subscribe(data => {
+    this.productService.getProductById(this.productId).subscribe(data => {
       this.product = data;
+      console.log(this.product.productImages)
     }, error => {
       throwError(error);
+      this.router.navigateByUrl('/not-found');
     });
   }
 
